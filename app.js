@@ -8,13 +8,16 @@ const indexRouter = require("./routes/index");
 const usersRouter = require("./routes/users");
 const catalogRouter = require("./routes/catalog");
 
+const compression = require("compression");
+const helmet = require("helmet");
+
 require("dotenv").config();
 
 const app = express();
 
 // set up mongoose connection
 const mongoose = require("mongoose");
-const mongoDB = process.env.MONGOURI;
+const mongoDB = process.env.MONGODB_URI;
 
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -27,6 +30,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 // middleware
+app.use(helmet()); // set appropriate HTTP headers
+app.use(compression()); // compress all routes
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
