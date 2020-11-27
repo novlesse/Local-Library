@@ -1,6 +1,6 @@
 # Javascript Frameworks & Server
 
-## COMP 3330 Assignment Series
+### COMP 3330 Assignment Series
 
 <br>
 
